@@ -1,0 +1,326 @@
+/* ═══════════════════════════════════════════════════════════
+   THEME SYSTEM — Dark Mode + Multiple Themes
+   ═══════════════════════════════════════════════════════════ */
+
+/* THEME 1: LIGHT MODE */
+:root[data-theme="light"],
+.theme-light {
+  /* ── Fondos — light glass ── */
+  --bg:       #ffffff;
+  --surface:  #f8f7f5;
+  --surface2: #f0ebe5;
+  --surface3: #e8e0d8;
+  --glass:    rgba(0, 0, 0, 0.02);
+  --glass2:   rgba(0, 0, 0, 0.04);
+  --border:   rgba(0, 0, 0, 0.08);
+  --border2:  rgba(0, 0, 0, 0.04);
+
+  /* ── Colores de señal ── */
+  --amber:       #d97706;
+  --amber2:      #b45309;
+  --amber-glow:  rgba(217, 119, 6, 0.1);
+  --vu-green:    #16a34a;
+  --vu-yellow:   #eab308;
+  --clip-red:    #dc2626;
+  --cyan:        #0891b2;
+  --lilac:       #7c3aed;
+
+  /* ── Texto ── */
+  --text:   #1f2937;
+  --muted:  #6b7280;
+  --faint:  #9ca3af;
+}
+
+/* THEME 2: DARK MODE (default) */
+:root[data-theme="dark"],
+.theme-dark {
+  /* ── Fondos — dark glass ── */
+  --bg:       #0f172a;
+  --surface:  #1e293b;
+  --surface2: #334155;
+  --surface3: #475569;
+  --glass:    rgba(255, 255, 255, 0.03);
+  --glass2:   rgba(255, 255, 255, 0.06);
+  --border:   rgba(255, 255, 255, 0.09);
+  --border2:  rgba(255, 255, 255, 0.05);
+
+  /* ── Colores de señal ── */
+  --amber:       #fbbf24;
+  --amber2:      #d97706;
+  --amber-glow:  rgba(251, 191, 36, 0.15);
+  --vu-green:    #4ade80;
+  --vu-yellow:   #facc15;
+  --clip-red:    #ff4757;
+  --cyan:        #22d3ee;
+  --lilac:       #c084fc;
+
+  /* ── Texto ── */
+  --text:   #f1f5f9;
+  --muted:  #94a3b8;
+  --faint:  #cbd5e1;
+}
+
+/* THEME 3: HIGH CONTRAST */
+:root[data-theme="high-contrast"],
+.theme-high-contrast {
+  /* ── Fondos — máximo contraste ── */
+  --bg:       #000000;
+  --surface:  #1a1a1a;
+  --surface2: #2d2d2d;
+  --surface3: #404040;
+  --glass:    rgba(255, 255, 255, 0.08);
+  --glass2:   rgba(255, 255, 255, 0.12);
+  --border:   rgba(255, 255, 255, 0.3);
+  --border2:  rgba(255, 255, 255, 0.15);
+
+  /* ── Colores de señal — más saturados ── */
+  --amber:       #ffff00;
+  --amber2:      #ffcc00;
+  --amber-glow:  rgba(255, 255, 0, 0.2);
+  --vu-green:    #00ff00;
+  --vu-yellow:   #ffff00;
+  --clip-red:    #ff0000;
+  --cyan:        #00ffff;
+  --lilac:       #ff00ff;
+
+  /* ── Texto — máximo blanco ── */
+  --text:   #ffffff;
+  --muted:  #cccccc;
+  --faint:  #999999;
+}
+
+/* THEME 4: OLED BLACK (para pantallas OLED) */
+:root[data-theme="oled-black"],
+.theme-oled-black {
+  /* ── Fondos — verdadero negro ── */
+  --bg:       #000000;
+  --surface:  #0a0a0a;
+  --surface2: #141414;
+  --surface3: #1f1f1f;
+  --glass:    rgba(255, 255, 255, 0.05);
+  --glass2:   rgba(255, 255, 255, 0.08);
+  --border:   rgba(255, 255, 255, 0.08);
+  --border2:  rgba(255, 255, 255, 0.04);
+
+  /* ── Colores de señal ── */
+  --amber:       #fbbf24;
+  --amber2:      #d97706;
+  --amber-glow:  rgba(251, 191, 36, 0.12);
+  --vu-green:    #4ade80;
+  --vu-yellow:   #facc15;
+  --clip-red:    #ff4757;
+  --cyan:        #22d3ee;
+  --lilac:       #c084fc;
+
+  /* ── Texto ── */
+  --text:   #f1f5f9;
+  --muted:  #94a3b8;
+  --faint:  #64748b;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   THEME SWITCHER UI
+   ═══════════════════════════════════════════════════════════ */
+
+.header-actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: .55rem;
+  min-width: 0;
+}
+
+.theme-switcher-mount,
+.theme-switcher-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.theme-switcher-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 34px;
+  border-radius: 8px;
+  background: var(--glass);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: all 200ms ease;
+  font-size: 18px;
+}
+
+.theme-switcher-btn:hover {
+  background: var(--glass2);
+  border-color: var(--amber);
+  transform: scale(1.05);
+}
+
+.theme-switcher-menu {
+  position: fixed;
+  top: 60px;
+  right: 20px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px;
+  min-width: 200px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  z-index: 15000;
+  backdrop-filter: blur(20px);
+  transition: opacity 200ms, transform 200ms;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.theme-switcher-menu.hidden {
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+}
+
+.theme-switcher-title {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+
+.theme-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 12px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 150ms ease;
+  font-family: var(--sans);
+  text-align: left;
+}
+
+.theme-option:hover {
+  background: var(--glass);
+  border-color: var(--amber);
+}
+
+.theme-option.active {
+  background: var(--amber-glow);
+  border-color: var(--amber);
+  color: var(--amber);
+  font-weight: 600;
+}
+
+.theme-option .icon {
+  font-size: 16px;
+  display: inline-block;
+  min-width: 24px;
+}
+
+.theme-divider {
+  border: none;
+  height: 1px;
+  background: var(--border);
+  margin: 8px 0;
+}
+
+.theme-shortcuts {
+  font-size: 11px;
+  color: var(--faint);
+  line-height: 1.4;
+  padding: 8px 12px;
+  background: var(--glass);
+  border-radius: 6px;
+  margin-top: 8px;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   TOAST NOTIFICATION
+   ═══════════════════════════════════════════════════════════ */
+
+.theme-toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: var(--surface2);
+  color: var(--text);
+  padding: 12px 20px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  font-size: 14px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 300ms ease;
+  pointer-events: none;
+  z-index: 2000;
+}
+
+.theme-toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SMOOTH TRANSITIONS ENTRE TEMAS
+   ═══════════════════════════════════════════════════════════ */
+
+html {
+  transition: background-color 300ms ease, color 300ms ease;
+}
+
+:root[data-theme] * {
+  transition: background-color 250ms ease,
+              border-color 250ms ease,
+              color 250ms ease,
+              box-shadow 250ms ease;
+}
+
+/* Excluir transiciones en elementos que cambian frecuentemente */
+:root[data-theme] input,
+:root[data-theme] textarea,
+:root[data-theme] canvas {
+  transition: none;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   MEDIA QUERIES — Adaptación automática
+   ═══════════════════════════════════════════════════════════ */
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) {
+    --bg:       #ffffff;
+    --surface:  #f8f7f5;
+    --surface2: #f0ebe5;
+    --text:     #1f2937;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --bg:       #0f172a;
+    --surface:  #1e293b;
+    --surface2: #334155;
+    --text:     #f1f5f9;
+  }
+}
+
+@media (max-width: 760px) {
+  .header-actions { gap: .35rem; }
+  .theme-switcher-btn { width: 34px; height: 32px; }
+  .theme-switcher-menu { right: 8px; top: 52px; min-width: 190px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html,
+  :root[data-theme] * {
+    transition: none !important;
+  }
+}
